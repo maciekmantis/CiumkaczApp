@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mks.ciumkacz.StopwatchFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/stopwatch_start_width"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/stopwatch_start_left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/stopwatch_start_left" />
+
+        <Button
+            android:id="@+id/stopwatch_start_right"
+            android:layout_width="match_parent"
+            android:layout_height="100dip"
+            android:layout_weight="1"
+            android:text="@string/stopwatch_start_right" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/stopwatch_time_elapsed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/stopwatch_time_elapsed_text_size"
+        android:text="@string/stopwatch_time_elapsed_default" />
+
+
+</LinearLayout>

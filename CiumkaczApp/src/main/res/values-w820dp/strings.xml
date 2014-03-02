@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CiumkaczApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="stopwatch_start_left">L</string>
+    <string name="stopwatch_start_right">P</string>
+    <string name="stopwatch_time_elapsed_default">00:00:00</string>
+
+</resources>
