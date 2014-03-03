@@ -1,1 +1,1 @@
-include ':CiumkaczApp', ':Stopwatch'
+include ':CiumkaczApp'

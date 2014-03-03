@@ -1,4 +1,4 @@
-package com.mks.ciumkacz;
+package com.mks.ciumkacz.gui;
 
 import android.app.Activity;
 import android.app.ListFragment;

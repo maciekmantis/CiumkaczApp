@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CiumkaczApp.iml" filepath="$PROJECT_DIR$/CiumkaczApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/CiumkaczApp/CiumkaczApp-CiumkaczApp.iml" filepath="$PROJECT_DIR$/CiumkaczApp/CiumkaczApp-CiumkaczApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Stopwatch/Stopwatch.iml" filepath="$PROJECT_DIR$/Stopwatch/Stopwatch.iml" />
     </modules>
   </component>
 </project>

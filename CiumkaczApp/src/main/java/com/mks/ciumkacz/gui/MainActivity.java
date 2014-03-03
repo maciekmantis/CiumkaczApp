@@ -1,9 +1,11 @@
-package com.mks.ciumkacz;
+package com.mks.ciumkacz.gui;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.mks.ciumkacz.R;
 
 public class MainActivity extends Activity implements StopwatchFragment.OnStopwatchInteractionListener, FeedListFragment.OnFeedListInteractionListener {
 
