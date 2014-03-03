@@ -49,12 +49,22 @@ public class StopwatchController {
         if (stopwatchManager.getState() == StopwatchState.STOPPED) {
             stopwatchManager.start(new Stopwatch());
             if (view.getClass() == Button.class) {
-                ((Button)view).setText(R.string.stopwatch_stop); //nie dziala
+                ((Button)view).setText(R.string.stopwatch_stop);
+            }
+            if (view.getId() == R.id.stopwatch_start_left) {
+                stopwatchFragment.getStopwatchStartRight().setEnabled(false);
+            } else if (view.getId() == R.id.stopwatch_start_right) {
+                stopwatchFragment.getStopwatchStartLeft().setEnabled(false);
             }
         } else {
             stopwatchManager.stop();
-            stopwatchFragment.getStopwatchStartLeft().setText(R.string.stopwatch_start_left);
-            stopwatchFragment.getStopwatchStartRight().setText(R.string.stopwatch_start_right);
+            if (view.getId() == R.id.stopwatch_start_left) {
+                stopwatchFragment.getStopwatchStartLeft().setText(R.string.stopwatch_start_left);
+                stopwatchFragment.getStopwatchStartRight().setEnabled(true);
+            } else if (view.getId() == R.id.stopwatch_start_right) {
+                stopwatchFragment.getStopwatchStartRight().setText(R.string.stopwatch_start_right);
+                stopwatchFragment.getStopwatchStartLeft().setEnabled(true);
+            }
         }
     }
 

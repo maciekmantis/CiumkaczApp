@@ -93,21 +93,21 @@ public class StopwatchFragment extends Fragment {
         stopwatchTimeElapsedField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopwatchController.action(, StopwatchController.ACTION_PAUSE);
+                stopwatchController.action(view, StopwatchController.ACTION_PAUSE);
             }
         });
         stopwatchStartLeft = ((Button) rootView.findViewById(R.id.stopwatch_start_left));
         stopwatchStartLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopwatchController.action(, StopwatchController.ACTION_LEFT);
+                stopwatchController.action(view, StopwatchController.ACTION_LEFT);
             }
         });
         stopwatchStartRight = ((Button) rootView.findViewById(R.id.stopwatch_start_right));
         stopwatchStartRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopwatchController.action(, StopwatchController.ACTION_LEFT);
+                stopwatchController.action(view, StopwatchController.ACTION_LEFT);
             }
         });
     }
