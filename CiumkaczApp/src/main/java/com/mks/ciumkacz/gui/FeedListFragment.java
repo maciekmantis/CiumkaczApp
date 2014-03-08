@@ -9,13 +9,6 @@ import android.widget.ListView;
 
 import com.mks.ciumkacz.dummy.DummyContent;
 
-/**
- * A fragment representing a list of Items.
- * <p />
- * <p />
- * Activities containing this fragment MUST implement the {@link Callbacks}
- * interface.
- */
 public class FeedListFragment extends ListFragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -27,7 +20,8 @@ public class FeedListFragment extends ListFragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFeedListInteractionListener mListener;
+    private OnFeedsChangedListener mListener;
+    private ArrayAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
     public static FeedListFragment newInstance(String param1, String param2) {
@@ -47,6 +41,16 @@ public class FeedListFragment extends ListFragment {
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        setListAdapter(mAdapter);
+//        mAdapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, null, new String[] {"time_elapsed"}, new int[] {android.R.id.text1}, 0);
+//        setListAdapter(mAdapter);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -55,9 +59,9 @@ public class FeedListFragment extends ListFragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        // TODO: Change Adapter to display your content
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS));
+//        // TODO: Change Adapter to display your content
+//        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+//                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS));
     }
 
 
@@ -65,10 +69,10 @@ public class FeedListFragment extends ListFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFeedListInteractionListener) activity;
+            mListener = (OnFeedsChangedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                + " must implement OnStopwatchInteractionListener");
+                    + " must implement OnStopwatchInteractionListener");
         }
     }
 
@@ -90,19 +94,20 @@ public class FeedListFragment extends ListFragment {
         }
     }
 
-    /**
-    * This interface must be implemented by activities that contain this
-    * fragment to allow an interaction in this fragment to be communicated
-    * to the activity and potentially other fragments contained in that
-    * activity.
-    * <p>
-    * See the Android Training lesson <a href=
-    * "http://developer.android.com/training/basics/fragments/communicating.html"
-    * >Communicating with Other Fragments</a> for more information.
-    */
-    public interface OnFeedListInteractionListener {
+    public interface OnFeedsChangedListener {
         // TODO: Update argument type and name
 //        public void onFragmentInteraction(String id);
+
+        public void updateFeeds();
+
+    }
+
+    public void refreshAdapter() {
+//        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+//                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+//        setListAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+
     }
 
 }

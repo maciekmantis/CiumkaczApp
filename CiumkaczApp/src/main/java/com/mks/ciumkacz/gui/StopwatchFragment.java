@@ -2,7 +2,6 @@ package com.mks.ciumkacz.gui;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.mks.ciumkacz.R;
+import com.mks.ciumkacz.controller.StopwatchAction;
 import com.mks.ciumkacz.controller.StopwatchController;
 
-
-/**
- * A simple {@link android.support.v4.app.Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link StopwatchFragment.OnStopwatchInteractionListener} interface
- * to handle interaction events.
- * Use the {@link StopwatchFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class StopwatchFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +23,7 @@ public class StopwatchFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnStopwatchInteractionListener mListener;
+    private FeedListFragment.OnFeedsChangedListener mListener;
 
     private StopwatchController stopwatchController;
     private View rootView;
@@ -93,29 +84,32 @@ public class StopwatchFragment extends Fragment {
         stopwatchTimeElapsedField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopwatchController.action(view, StopwatchController.ACTION_PAUSE);
+                stopwatchController.action(view, StopwatchAction.ACTION_PAUSE);
+                updateFeeds();
             }
         });
         stopwatchStartLeft = ((Button) rootView.findViewById(R.id.stopwatch_start_left));
         stopwatchStartLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopwatchController.action(view, StopwatchController.ACTION_LEFT);
+                stopwatchController.action(view, StopwatchAction.ACTION_LEFT);
+                updateFeeds();
             }
         });
         stopwatchStartRight = ((Button) rootView.findViewById(R.id.stopwatch_start_right));
         stopwatchStartRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopwatchController.action(view, StopwatchController.ACTION_LEFT);
+                stopwatchController.action(view, StopwatchAction.ACTION_LEFT);
+                updateFeeds();
             }
         });
+
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    private void updateFeeds() {
         if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
+            mListener.updateFeeds();
         }
     }
 
@@ -123,10 +117,10 @@ public class StopwatchFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnStopwatchInteractionListener) activity;
+            mListener = (FeedListFragment.OnFeedsChangedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnStopwatchInteractionListener");
+                    + " must implement OnFeedsChangedListener");
         }
     }
 
@@ -134,21 +128,6 @@ public class StopwatchFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnStopwatchInteractionListener {
-        // TODO: Update argument type and name
-//        public void onFragmentInteraction(Uri uri);
     }
 
     public TextView getStopwatchTimeElapsedField() {

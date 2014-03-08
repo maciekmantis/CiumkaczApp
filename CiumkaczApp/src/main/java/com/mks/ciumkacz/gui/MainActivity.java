@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import com.mks.ciumkacz.R;
 
-public class MainActivity extends Activity implements StopwatchFragment.OnStopwatchInteractionListener, FeedListFragment.OnFeedListInteractionListener {
+public class MainActivity extends Activity implements FeedListFragment.OnFeedsChangedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,4 +36,9 @@ public class MainActivity extends Activity implements StopwatchFragment.OnStopwa
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void updateFeeds() {
+        FeedListFragment fragment = (FeedListFragment) getFragmentManager().findFragmentById(R.id.feed_list);
+        fragment.refreshAdapter();
+    }
 }
